@@ -44,3 +44,7 @@ class EditProfileAdminForm(Form):
         if field.data != self.user.name and \
                 User.query.filter_by(name=field.data).first():
             raise ValidationError('Name already in use.')
+
+class PostForm(Form):
+    body = TextAreaField('write something here: ', validators=[Required()])
+    submit = SubmitField('Submit')
