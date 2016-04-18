@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+#-*-coding:utf-8-*-
+
 from flask import render_template, redirect, url_for, abort, flash
 from flask.ext.login import login_required, current_user
 
@@ -33,7 +36,7 @@ def edit_profile():
         current_user.location = form.location.data
         current_user.about_me = form.about_me.data
         db.session.add(current_user)
-        flash('Your profile has been updated.')
+        flash("个人资料已经更新")
         return redirect(url_for('.user', name=current_user.name))
     form.avatar.data = current_user.avatar
     form.location.data = current_user.location
@@ -55,7 +58,7 @@ def edit_profile_admin(id):
         user.location = form.location.data
         user.about_me = form.about_me.data
         db.session.add(user)
-        flash('The profile has been updated.')
+        flash("个人资料已经更新")
         return redirect(url_for('.user', name=user.name))
     form.avatar.data = user.avatar
     form.email.data = user.email

@@ -1,9 +1,9 @@
 Dear {{ user.name }},
 
-Welcome to Harry's blog!
+欢迎来到 Harry's blog!
 
-To confirm your account please click on the following link:
+点击以下链接确认你的帐号：
 
 {{ url_for('auth.confirm', token=token, _external=True) }}
 
-Sincerely
+谢谢

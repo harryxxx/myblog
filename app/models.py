@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+#-*-coding:utf-8-*-
+
 from werkzeug.security import generate_password_hash, check_password_hash
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask import current_app
@@ -56,7 +59,7 @@ class Post(db.Model):
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    avatar = db.Column(db.String(128))
+    avatar = db.Column(db.String(128), default="http://7xrooc.com1.z0.glb.clouddn.com/index.png")
     email = db.Column(db.String(64), unique=True, index=True)
     name = db.Column(db.String(64), unique=True, index=True)
     location = db.Column(db.String(64))
