@@ -6,6 +6,8 @@ from wtforms import StringField, TextAreaField, BooleanField, SelectField,\
     SubmitField
 from wtforms.validators import Required, Length, Email, Regexp
 from wtforms import ValidationError
+from flask.ext.pagedown.fields import PageDownField 
+
 from ..models import Role, User
 
 class NameForm(Form):
@@ -49,5 +51,5 @@ class EditProfileAdminForm(Form):
             raise ValidationError('名字已经被使用')
 
 class PostForm(Form):
-    body = TextAreaField('写点什么', validators=[Required()])
+    body = PageDownField('写点什么', validators=[Required()])
     submit = SubmitField('提交')

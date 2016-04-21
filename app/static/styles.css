@@ -32,9 +32,8 @@ div.post-content {
     min-height: 48px;
 }
 div.pagination {
-    width: 100%;
+    width: 200%;
     text-align: right;
     padding: 0px;
     margin: 0px;
 }
-
