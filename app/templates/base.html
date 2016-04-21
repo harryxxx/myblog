@@ -1,12 +1,13 @@
 {% extends "bootstrap/base.html" %}
 
+
+{% block title %}Harry{% endblock %}
+
 {% block head %}
 {{ super() }}
 <link rel="icon" href="{{ url_for('static', filename='shortcut.ico') }}" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 {% endblock %}
-
-{% block title %}Harry{% endblock %}
 
 {% block navbar %}
 <div class="navbar navbar-inverse" role="navigation">
@@ -45,17 +46,14 @@
 {% endblock %}
 
 {% block content %}
-
-{% for message in get_flashed_messages() %}
-
-  <div class="alert alert-warning">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    {{ message }}
-  </div>
-
-{% endfor %}
-
 <div class="container">
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
+
     {% block page_content %}{% endblock %}
 </div>
 {% endblock %}
