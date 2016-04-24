@@ -16,8 +16,6 @@
                     {{ post.body }}
                 {% endif %}
             </div>
-<<<<<<< HEAD
-=======
             <div class="post-footer">
                 {% if current_user == post.author %}
                 <a href="{{ url_for('.edit', id=post.id) }}">
@@ -35,7 +33,6 @@
                     <span class="label label-primary">{{ post.comments.count() }} 评论</span>
                 </a>
             </div>
->>>>>>> 5b6304
         </div>
     </li>
     {% endfor %}
