@@ -1,12 +1,13 @@
 {% extends "bootstrap/base.html" %}
 
+
+{% block title %}Harry{% endblock %}
+
 {% block head %}
 {{ super() }}
 <link rel="icon" href="{{ url_for('static', filename='shortcut.ico') }}" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 {% endblock %}
-
-{% block title %}Harry{% endblock %}
 
 {% block navbar %}
 <div class="navbar navbar-inverse" role="navigation">
@@ -18,13 +19,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ url_for('main.index') }}">Harry</a>
+            <a class="navbar-brand" href="{{ url_for('main.index') }}">主页</a>
         </div>
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="{{ url_for('main.index') }}">主页</a></li>
-            </ul>
             <ul class="nav navbar-nav navbar-right">
+                {% if current_user.can(Permission.MODERATE_COMMENTS) %}
+                <li><a href="{{ url_for('main.moderate') }}">管理评论</a></li>
+                {% endif %}
                 {% if current_user.is_authenticated %}
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">选项 <b class="caret"></b></a>
@@ -45,17 +46,14 @@
 {% endblock %}
 
 {% block content %}
-
-{% for message in get_flashed_messages() %}
-
-  <div class="alert alert-warning">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    {{ message }}
-  </div>
-
-{% endfor %}
-
 <div class="container">
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
+
     {% block page_content %}{% endblock %}
 </div>
 {% endblock %}
