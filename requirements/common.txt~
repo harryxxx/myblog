@@ -23,7 +23,6 @@ alembic==0.8.5
 argparse==1.2.1
 bleach==1.4.2
 blinker==1.4
-coverage==4.0.3
 dominate==2.1.17
 html5lib==0.9999999
 httpie==0.9.3
