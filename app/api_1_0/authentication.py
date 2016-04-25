@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+#-*-coding:utf-8-*-
+
 from flask.ext.httpauth import HTTPBasicAuth
 from flask import g, jsonify
 

@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+#-*-coding:utf-8-*-
+
 from flask import jsonify
 from app.exceptions import ValidationError
 from . import api
