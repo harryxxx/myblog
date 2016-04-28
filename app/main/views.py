@@ -238,3 +238,7 @@ def moderate_disable(id):
     db.session.add(comment)
     return redirect(url_for('.moderate',
                             page=request.args.get('page', 1, type=int)))
+
+@main.route('/pic.html', methods=['GET', 'POST'])
+def watchPic():
+    return render_template('pic.html')

@@ -1,0 +1,96 @@
+body
+{
+	font-family:sans-serif;
+	background-color: #FFFFFF;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+#allcontent
+{
+	width: 1000px;
+	padding: 20px;
+	padding-top: 100px;
+	background-color: #DDffDD;
+}
+h1
+{
+	font-size: 30px;
+}
+#logop
+{
+	position: absolute;
+	top: 0px;
+	left: 15%;
+}
+#links
+{
+	border: 1px solid #3299cc;
+	font-size: 20px;
+	float:right;
+}
+#main
+{
+	padding: 20px;
+	border: 1px solid #3299cc;
+	margin: 10px;
+	margin: 0px 300px 10px 10px;
+}
+table
+{
+	margin: 0px 20px 0px 20px;
+	border-collapse: collapse;
+	caption-side: bottom;
+}
+td,th
+{
+	text-align: center;
+	padding:5px;
+}
+li
+{
+	list-style-type:circle;
+	padding-top: 5px;
+	margin-left: 20px;
+}
+#message
+{
+	color: #70DDdd;
+	padding-top: 20px;
+	text-align: center;
+	clear:both;
+}
+p.linkbl
+{
+	padding-left: 10px;
+}
+.linkp
+{
+	padding: 20px;
+}
+a:link
+{
+	color: blue;
+}
+a:visited
+{
+	color:gray;
+}
+a:hover
+{
+	color: red;
+}
+#buding
+{
+	position: fixed;
+	top: 80%;
+	left:0px;
+}
+.change
+{
+	width: 400px;
+}
+.message
+{
+	TEXT-ALIGN: center;
+	color: green;
+}
