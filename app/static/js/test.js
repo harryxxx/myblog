@@ -2,8 +2,7 @@ var num=0
 
 function changePic (whichpic) 
 {
-    if (!document.getElementsByTagName || !document.getElementById) return false;
-    var source = whichpic.getAttribute("href");
+    var source = whichpic.getAttribute("id");
     var des = document.getElementById("description");
     if (source == "pre")
     {
@@ -29,8 +28,6 @@ function changePic (whichpic)
 
 function preparePreview ()
 {
-    if (!document.getElementsByTagName || !document.getElementById) return false;
-    if (!document.getElementById("preview")) return false;
     var previews = document.getElementById("preview");
     var links = previews.getElementsByTagName("a");
     for (var i=0; i<links.length; i++)
@@ -42,21 +39,8 @@ function preparePreview ()
     }
 }
 
-function showPic (whichpic)
-{
-    if (!document.getElementsByTagName || !document.getElementById) return false;
-    var source = whichpic.getAttribute("href");
-    var text = whichpic.getAttribute("title");
-    var pic = document.getElementById("picture");
-    var des = document.getElementById("description");
-    des.firstChild.nodeValue = text;
-    pic.setAttribute("src", source);
-}
-
 function popUp (winURL)
 {
-    if (!document.getElementsByTagName || !document.getElementById) return false;
-    if (!document.getElementById("picture")) return false;    
     var previewpic = document.getElementById("picture");
     var picURL = previewpic.getAttribute("src")
     window.open(picURL, "popup", "width=320,height=480");
@@ -65,7 +49,6 @@ function popUp (winURL)
 
 function prepareLinks ()
 {
-    if (!document.getElementsByTagName) return false;
     var links = document.getElementsByTagName("a");
     for (var i=0; i<links.length; i++)
     {
