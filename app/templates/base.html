@@ -5,45 +5,37 @@
 
 {% block head %}
 {{ super() }}
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <link rel="icon" href="{{ url_for('static', filename='shortcut.ico') }}" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 <stript src="{{ url_for('static', filename='test.js') }}"></stript>
 {% endblock %}
 
 {% block navbar %}
-<div class="navbar navbar-inverse" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{ url_for('main.index') }}">主页</a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                {% if current_user.can(Permission.MODERATE_COMMENTS) %}
-                <li><a href="{{ url_for('main.moderate') }}">管理评论</a></li>
-                {% endif %}
-                {% if current_user.is_authenticated %}
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">选项 <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{ url_for('main.user', name=current_user.name) }}">个人资料</a></li>
-                        <li><a href="{{ url_for('auth.change_password') }}">更改密码</a></li>
-                        <li><a href="{{ url_for('auth.change_email_request') }}">更改邮件</a></li>
-                        <li><a href="{{ url_for('auth.logout') }}">注销</a></li>
-                    </ul>
-                </li>
-                {% else %}
-                <li><a href="{{ url_for('auth.login') }}">登录</a></li>
-                {% endif %}
-            </ul>
-        </div>
+<div class="container">
+    <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+            <li ><a class="btn btn-xs btn-primary" href="{{ url_for('main.index') }}">主页</a></li>
+            {% if current_user.can(Permission.MODERATE_COMMENTS) %}
+            <li><a class="btn btn-xs btn-danger" href="{{ url_for('main.moderate') }}">管理评论</a></li>
+            {% endif %}
+            {% if current_user.is_authenticated %}
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">选项 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ url_for('main.user', name=current_user.name) }}">个人资料</a></li>
+                    <li><a href="{{ url_for('auth.change_password') }}">更改密码</a></li>
+                    <li><a href="{{ url_for('auth.change_email_request') }}">更改邮件</a></li>
+                    <li><a href="{{ url_for('auth.logout') }}">注销</a></li>
+                </ul>
+            </li>
+            {% endif %}
+        </ul>
+        <h3 class="muted">(=￣ω￣=)</h3>
     </div>
+    <hr>
 </div>
+
 {% endblock %}
 
 {% block content %}

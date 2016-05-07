@@ -6,7 +6,7 @@
 {% block page_content %}
 <div class="page-header">
     {% if user.avatar %}
-        <img class="img-rounded profile-thumbnail" src="{{ user.avatar }}" width="200px" height="200px">
+        <img id="avatar_user" class="img-rounded profile-thumbnail" src="{{ user.avatar }}" width="200px" height="200px">
     {% endif %}
     <div class="profile-header">
         <h1>{{ user.name }}</h1>
@@ -27,13 +27,13 @@
         <p>
             {% if current_user.can(Permission.FOLLOW) and user != current_user %}
                 {% if not current_user.is_following(user) %}
-                <a href="{{ url_for('.follow', name=user.name) }}" class="btn btn-primary">关注</a>
+                <a href="{{ url_for('.follow', name=user.name) }}" class="btn btn-sm btn-success">关注</a>
                 {% else %}
-                <a href="{{ url_for('.unfollow', name=user.name) }}" class="btn btn-default">取消关注</a>
+                <a href="{{ url_for('.unfollow', name=user.name) }}" class="btn btn-sm btn-link">取消关注</a>
                 {% endif %}
             {% endif %}
-            <a href="{{ url_for('.followers', name=user.name) }}">粉丝数：<span class="badge">{{ user.followers.count() }}</span></a>
-            <a href="{{ url_for('.followed_by', name=user.name) }}">正在关注：<span class="badge">{{ user.followed.count() }}</span></a>
+            <a href="{{ url_for('.followers', name=user.name) }}" class="btn btn-sm btn-primary" >粉丝<span class="badge">{{ user.followers.count() }}</span></a>
+            <a href="{{ url_for('.followed_by', name=user.name) }}" class="btn btn-sm btn-primary">关注<span class="badge">{{ user.followed.count() }}</span></a>
             {% if current_user.is_authenticated and user != current_user and user.is_following(current_user) %}
             | <span class="label label-default">关注了你</span>
             {% endif %}
@@ -55,4 +55,17 @@
     {{ macros.pagination_widget(pagination, '.user', name=user.name) }}
 </div>
 {% endif %}
+<script type="text/javascript">
+(function($)
+{
+    $(document).ready(function() //手机端不会显示头像
+    { 
+        if ($(window).width() < 400)
+        {
+            $("#avatar_user").hide();
+            $(".profile-header").css("margin-left",0)
+        }
+    })
+})(jQuery);
+</script>
 {% endblock %}
