@@ -1,7 +1,7 @@
 {% extends "bootstrap/base.html" %}
 
 
-{% block title %}Harry{% endblock %}
+{% block title %}(=￣ω￣=){% endblock %}
 
 {% block head %}
 {{ super() }}
@@ -16,17 +16,17 @@
     <div class="masthead">
         <ul class="nav nav-pills pull-right">
             <li ><a class="btn btn-xs btn-primary" href="{{ url_for('main.index') }}">主页</a></li>
-            {% if current_user.can(Permission.MODERATE_COMMENTS) %}
-            <li><a class="btn btn-xs btn-danger" href="{{ url_for('main.moderate') }}">管理评论</a></li>
-            {% endif %}
             {% if current_user.is_authenticated %}
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">选项 <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="{{ url_for('main.user', name=current_user.name) }}">个人资料</a></li>
-                    <li><a href="{{ url_for('auth.change_password') }}">更改密码</a></li>
-                    <li><a href="{{ url_for('auth.change_email_request') }}">更改邮件</a></li>
-                    <li><a href="{{ url_for('auth.logout') }}">注销</a></li>
+                    {% if current_user.can(Permission.MODERATE_COMMENTS) %}
+                    <li><a class="btn btn-xs btn-danger" href="{{ url_for('main.moderate') }}">管理评论</a></li>
+                    {% endif %}
+                    <li><a class="btn btn-sm btn-link" href="{{ url_for('main.user', name=current_user.name) }}">个人资料</a></li>
+                    <li><a class="btn btn-sm btn-link" href="{{ url_for('auth.change_password') }}">更改密码</a></li>
+                    <li><a class="btn btn-sm btn-link" href="{{ url_for('auth.change_email_request') }}">更改邮件</a></li>
+                    <li><a class="btn btn-sm btn-link" href="{{ url_for('auth.logout') }}">注销</a></li>
                 </ul>
             </li>
             {% endif %}
