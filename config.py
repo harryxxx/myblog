@@ -19,6 +19,9 @@ class Config:
     FLASKY_FOLLOWERS_PER_PAGE = 50
     FLASKY_COMMENTS_PER_PAGE = 30
     FLASKY_SLOW_DB_QUERY_TIME=0.5
+    UPLOAD_FOLDER = "uploads"
+    MAX_CONTENT_LENGTH = 100<<10 # max upload size < 100k
+    ALLOWED_EXTENSIONS = set(['jpg','png','JPG','PNG'])
 
     @staticmethod
     def init_app(app):
@@ -34,7 +37,7 @@ class TestingConfig(Config):
     WTF_CSRF_ENABLED = False
 
 class ProductionConfig(Config):
-    DEBUG = False
+    DEBUG = True
     TESTING = False
     SQLALCHEMY_DATABASE_URI ='mysql://flask:admin@localhost/flaskdb'
 

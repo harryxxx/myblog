@@ -4,9 +4,11 @@
 from flask import render_template, redirect, url_for, abort, flash, request, current_app,\
     make_response
 from flask.ext.login import login_required, current_user
+import os
 
 from . import main
-from .forms import EditProfileForm, EditProfileAdminForm, PostForm, CommentForm
+from .forms import EditProfileForm, EditProfileAdminForm, PostForm, CommentForm,\
+    UploadAvatarForm
 from .. import db
 from ..models import Role, User, Permission, Post, Comment
 from ..decorators import admin_required, permission_required
@@ -51,16 +53,37 @@ def user(name):
 def edit_profile():
     form = EditProfileForm()
     if form.validate_on_submit():
-        current_user.avatar = form.avatar.data
         current_user.location = form.location.data
         current_user.about_me = form.about_me.data
         db.session.add(current_user)
         flash("个人资料已经更新")
         return redirect(url_for('.user', name=current_user.name))
-    form.avatar.data = current_user.avatar
     form.location.data = current_user.location
     form.about_me.data = current_user.about_me
-    return render_template('edit_profile.html', form=form)
+    return render_template('edit_profile.html', form=form, user=current_user)
+
+def allowed_file(filename):
+    return '.' in filename and\
+        filename.rsplit('.',1)[-1] in current_app.config['ALLOWED_EXTENSIONS']
+
+@main.route('/upload-avatar', methods=['GET', 'POST'])
+@login_required
+def upload_avatar():
+    form = UploadAvatarForm()
+    if form.validate_on_submit():
+        f = request.files['uploadfile']
+        if f and allowed_file(f.filename):
+            f.save(os.path.join(current_app.root_path,\
+                'static/'+current_app.config['UPLOAD_FOLDER'],current_user.name+'.'+f.filename.rsplit('.',1)[-1]))
+            avatar_url = os.path.join(current_app.config['UPLOAD_FOLDER'],current_user.name+'.'+f.filename.rsplit('.',1)[-1])
+            flash("上传成功，头像已经更新")
+            if  avatar_url != current_user.avatar:
+                current_user.avatar = avatar_url
+                db.session.add(current_user)
+            return redirect('upload-avatar')
+        else:
+            flash("图片格式错误")
+    return render_template('upload_avatar.html',form=form)
 
 @main.route('/edit-profile/<int:id>', methods=['GET', 'POST'])
 @login_required
@@ -69,7 +92,6 @@ def edit_profile_admin(id):
     user = User.query.get_or_404(id)
     form = EditProfileAdminForm(user=user)
     if form.validate_on_submit():
-        user.avatar = form.avatar.data
         user.email = form.email.data
         user.name = form.name.data
         user.confirmed = form.confirmed.data
@@ -79,7 +101,6 @@ def edit_profile_admin(id):
         db.session.add(user)
         flash("个人资料已经更新")
         return redirect(url_for('.user', name=user.name))
-    form.avatar.data = user.avatar
     form.email.data = user.email
     form.confirmed.data = user.confirmed
     form.role.data = user.role_id
@@ -239,6 +260,6 @@ def moderate_disable(id):
     return redirect(url_for('.moderate',
                             page=request.args.get('page', 1, type=int)))
 
-@main.route('/pic.html', methods=['GET', 'POST'])
+@main.route('/pic', methods=['GET', 'POST'])
 def watchPic():
     return render_template('pic.html')

@@ -3,7 +3,7 @@
 
 from flask.ext.wtf import Form
 from wtforms import StringField, TextAreaField, BooleanField, SelectField,\
-    SubmitField
+    SubmitField, FileField
 from wtforms.validators import Required, Length, Email, Regexp
 from wtforms import ValidationError
 from flask.ext.pagedown.fields import PageDownField
@@ -16,12 +16,10 @@ class NameForm(Form):
 
 class EditProfileForm(Form):
     location = StringField('所在地', validators=[Length(0, 64)])
-    avatar = StringField('头像URL', validators=[Length(0, 128)])
     about_me = TextAreaField('个性签名')
     submit = SubmitField('提交')
 
 class EditProfileAdminForm(Form):
-    avatar = StringField('头像URL', validators=[Length(0, 128)])
     email = StringField('邮件地址', validators=[Required(), Length(1, 64),
                                              Email()])
     confirmed = BooleanField('确认')
@@ -57,3 +55,7 @@ class PostForm(Form):
 class CommentForm(Form):
     body = StringField('说点什么', validators=[Required()])
     submit = SubmitField('提交')
+
+class UploadAvatarForm(Form):
+    uploadfile = FileField("上传头像",validators=[Required()])
+    submit = SubmitField("确定")
