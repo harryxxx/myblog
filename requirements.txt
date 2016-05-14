@@ -25,6 +25,7 @@ bleach==1.4.2
 blinker==1.4
 coverage==4.0.3
 dominate==2.1.17
+gunicorn==19.5.0
 html5lib==0.9999999
 httpie==0.9.3
 itsdangerous==0.24
