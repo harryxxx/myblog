@@ -1,6 +1,16 @@
 # 这里是harryx的主页～
 
-### 抽空看《七周七语言》
-### 复习考试中
+**最近看的番**
 
-<center><img src="http://7xrooc.com1.z0.glb.clouddn.com/IMG_1072.PNG" /></center>>
++ 我的英雄学院
+热血番，设定是各种超能力，TOP1能力是实打实的拳头，相比较其他能力简单粗暴。然后，主角踏上了成为英雄的道路。。。
+各种英雄的服装有种街机游戏的感觉，为了突出个性？= =
+http://pan.baidu.com/s/1mihd3iK
+m3jv
+
++ 飞翔的魔女
+老夫的少女心啊，一部日常番，马后烧酒日常，好吧，是魔女日常，轻松搞笑，自带治愈。挺喜欢这种风格的，和之前看的南家三姐妹有相似的感觉。
+http://pan.baidu.com/s/1pLRE967
+ysxe
+
+![](http://7xrooc.com1.z0.glb.clouddn.com/IMG_1072.PNG)
