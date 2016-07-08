@@ -13,4 +13,8 @@ m3jv
 http://pan.baidu.com/s/1pLRE967
 ysxe
 
++ 宇宙巡警露露子
+年度最佳泡面番，用泡面的时间讲完了一般动漫20集讲不完的剧情。女主脸红心跳，张开双腿，露出了大♂炮..
+http://bangumi.bilibili.com/anime/3459/
+
 ![](http://7xrooc.com1.z0.glb.clouddn.com/IMG_1072.PNG)
