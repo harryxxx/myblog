@@ -107,9 +107,22 @@ def upload_pic():
             if f and allowed_file(f.filename):
                 f.save(fsavename)
                 flash("上传成功")
+                flash("图片可以通过链接：http://119.29.137.50/static/uploadpics/%s"%picname+'.'+f.filename.rsplit('.',1)[-1]+"查看")
             else:
                 flash("上传失败，请检查格式")
     return render_template('upload_pic.html',form=form)
+
+
+@main.route('/show-pic',methods=['GET','POST'])
+@login_required
+@admin_required
+def show_pic():
+    url = os.path.join(current_app.root_path,'static/uploadpics/')
+    pics = []
+    for root,dirs,files in os.walk(url):
+        for f in files:
+            pics.append(f)
+    return render_template('mypictures.html',pics=pics)
 
 
 @main.route('/edit-profile/<int:id>', methods=['GET', 'POST'])

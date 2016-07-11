@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}所有图片{% endblock %}
+
+{% block page_content %}
+    {% for pic in pics %}
+    	<img src="{{ url_for('static', filename='uploadpics/'+pic) }}" / >
+    {% endfor %}
+{% endblock %}
