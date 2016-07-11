@@ -59,3 +59,8 @@ class CommentForm(Form):
 class UploadAvatarForm(Form):
     uploadfile = FileField("上传头像",validators=[Required()])
     submit = SubmitField("确定")
+
+class UploadPicForm(Form):
+    uploadfile = FileField("上传图片",validators=[Required()])
+    picname = StringField("图片名", validators=[Required()])
+    submit = SubmitField("确定")

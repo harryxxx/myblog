@@ -14,10 +14,10 @@
     <a id="upload_avater" title="{{ url_for('main.upload_avatar',_external=True) }}" href="#">
         上传头像
     </a>
-    <span>上传图片不大于100k</span>
+    <span>上传图片不大于3M</span>
 {% endif %}
 <script type="text/javascript">
-(function($)
+(function($) //用来触发上传头像的按钮
 {
     $("#upload_avater").click(function()
     {

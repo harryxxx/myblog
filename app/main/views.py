@@ -4,11 +4,12 @@
 from flask import render_template, redirect, url_for, abort, flash, request, current_app,\
     make_response
 from flask.ext.login import login_required, current_user
+from werkzeug import secure_filename
 import os
 
 from . import main
 from .forms import EditProfileForm, EditProfileAdminForm, PostForm, CommentForm,\
-    UploadAvatarForm
+    UploadAvatarForm, UploadPicForm
 from .. import db
 from ..models import Role, User, Permission, Post, Comment
 from ..decorators import admin_required, permission_required
@@ -84,6 +85,32 @@ def upload_avatar():
         else:
             flash("图片格式错误")
     return render_template('upload_avatar.html',form=form)
+
+@main.route('/upload-pic',methods=['GET','POST'])
+@login_required
+@admin_required
+def upload_pic():
+    form = UploadPicForm()
+    if form.validate_on_submit():
+        f = request.files['uploadfile']
+        picname = form.picname.data
+        picname = secure_filename(picname)
+        if picname == '':
+            flash("文件名不合法")
+        else:
+            fsavename = os.path.join(current_app.root_path,\
+                    'static/'+current_app.config['UPLOAD_PIC_FOLDER'],picname+'.'+f.filename.rsplit('.',1)[-1])
+            while os.path.exists(fsavename):
+                picname = picname + '0'
+                fsavename = os.path.join(current_app.root_path,\
+                        'static/'+current_app.config['UPLOAD_PIC_FOLDER'],picname+'.'+f.filename.rsplit('.',1)[-1])
+            if f and allowed_file(f.filename):
+                f.save(fsavename)
+                flash("上传成功")
+            else:
+                flash("上传失败，请检查格式")
+    return render_template('upload_pic.html',form=form)
+
 
 @main.route('/edit-profile/<int:id>', methods=['GET', 'POST'])
 @login_required

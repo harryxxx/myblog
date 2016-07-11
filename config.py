@@ -20,7 +20,8 @@ class Config:
     FLASKY_COMMENTS_PER_PAGE = 30
     FLASKY_SLOW_DB_QUERY_TIME=0.5
     UPLOAD_FOLDER = "uploads"
-    MAX_CONTENT_LENGTH = 100<<10 # max upload size < 100k
+    UPLOAD_PIC_FOLDER = "uploadpics"
+    MAX_CONTENT_LENGTH = 3 * 1024 * 1024 # max upload size < 3M
     ALLOWED_EXTENSIONS = set(['jpg','png','JPG','PNG'])
 
     @staticmethod
